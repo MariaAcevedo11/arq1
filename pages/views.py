@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 #from django.http import HttpResponse
 from django.views.generic import TemplateView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 #def homePageView(request):
     #return HttpResponse('Hello world!')
@@ -39,10 +41,10 @@ class ContactPageView(TemplateView):
 
 class Product:
     products = [
-        {"id": "1", "name": "TV", "description": "Best TV", "price" : "17$"},
-        {"id": "2", "name": "iPhone", "description": "Best iPhone", "price" : "18$"},
-        {"id": "3", "name": "Chromecast", "description": "Best Chromecast", "price" : "19$"},
-        {"id": "4", "name": "Glasses", "description": "Best Glasses", "price" : "20$"}
+        {"id": "1", "name": "TV", "description": "Best TV", "price" : 17},
+        {"id": "2", "name": "iPhone", "description": "Best iPhone", "price" : 18},
+        {"id": "3", "name": "Chromecast", "description": "Best Chromecast", "price" : 19},
+        {"id": "4", "name": "Glasses", "description": "Best Glasses", "price" : 101}
     ]
 
 class ProductIndexView(View):
@@ -61,13 +63,16 @@ class ProductShowView(View):
 
     def get(self, request, id):
         viewData = {}
-        product = Product.products[int(id)-1]
-        viewData["title"] = product["name"] + " - Online Store"
-        viewData["subtitle"] = product["name"] + " - Product information"
-        viewData["price"] = product["name"]
-        viewData["product"] = product
-
-        return render(request, self.template_name, viewData)
+        try:
+            product = Product.products[int(id) - 1]
+            viewData["title"] = product["name"] + " - Online Store"
+            viewData["subtitle"] = product["name"] + " - Product information"
+            viewData["price"] = product["price"]
+            viewData["product"] = product
+            return render(request, self.template_name, viewData)
+        except (IndexError, ValueError):
+            # Redirige a la página principal si el id no es válido
+            return HttpResponseRedirect(reverse('home'))
 
 
 from django import forms
