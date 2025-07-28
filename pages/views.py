@@ -39,10 +39,10 @@ class ContactPageView(TemplateView):
 
 class Product:
     products = [
-        {"id": "1", "name": "TV", "description": "Best TV"},
-        {"id": "2", "name": "iPhone", "description": "Best iPhone"},
-        {"id": "3", "name": "Chromecast", "description": "Best Chromecast"},
-        {"id": "4", "name": "Glasses", "description": "Best Glasses"}
+        {"id": "1", "name": "TV", "description": "Best TV", "price" : "17$"},
+        {"id": "2", "name": "iPhone", "description": "Best iPhone", "price" : "18$"},
+        {"id": "3", "name": "Chromecast", "description": "Best Chromecast", "price" : "19$"},
+        {"id": "4", "name": "Glasses", "description": "Best Glasses", "price" : "20$"}
     ]
 
 class ProductIndexView(View):
@@ -64,6 +64,7 @@ class ProductShowView(View):
         product = Product.products[int(id)-1]
         viewData["title"] = product["name"] + " - Online Store"
         viewData["subtitle"] = product["name"] + " - Product information"
+        viewData["price"] = product["name"]
         viewData["product"] = product
 
         return render(request, self.template_name, viewData)
