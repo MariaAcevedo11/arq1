@@ -30,8 +30,9 @@ class ContactPageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context.update({
             "title": "Contact",
-            "description": "Email: onlineStore@gmail.com Address: 128 Mapple St"
-            " Phone number: +98 12389012312 "
+            "subtitle": "Contact us",
+            "description": "Email: onlineStore@gmail.com | Address: 128 Mapple St "
+            "| Phone number: +98 12389012312 "
 
         })
         return context    
