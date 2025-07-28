@@ -96,7 +96,7 @@ class ProductCreateView(View):
     def post(self, request):
         form = ProductForm(request.POST)
         if form.is_valid():
-            return redirect('products:index')  # Assuming you want to redirect to products index
+            return redirect('index')  # Assuming you want to redirect to products index
         else:
             viewData = {}
             viewData["title"] = "Create product"
