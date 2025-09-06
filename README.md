@@ -1,2 +1,1 @@
-"# arq1" 
-"# arq2" 
+Este es el primer tutorial. En el commit de tutorial dos completado es porque también lo subí aquí junto a unos archivos del primer tutorial que no subí. Aquí está todo sobre el 1, dividido en actividades. 
